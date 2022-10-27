@@ -1,0 +1,38 @@
+.screen(@breakpoint, @content,@size: 1200px) {
+  & when (@breakpoint = "phone" ){
+    @media only screen and (max-width: 368px) {
+      @content();
+    }
+  }
+
+  & when (@breakpoint = "tablet" ){
+    @media only screen and (max-width: 768px) {
+      @content();
+    }
+  }
+  & when (@breakpoint = "laptop" ){
+    @media only screen and (max-width: 992px) {
+      @content();
+    }
+  }
+  & when (@breakpoint = "desktop" ){
+    @media only screen and (max-width: 1199px) {
+      @content();
+    }
+  }
+  & when (@breakpoint = "extra" ){
+    @media only screen and (min-width: 1200px) {
+      @content();
+    }
+  }
+  & when (@breakpoint = "custom" ){
+    @media only screen and (max-width: @size) {
+      @content();
+    }
+  }
+  & when (@breakpoint = "custom-large" ){
+    @media only screen and (min-width: @size) {
+      @content();
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@import "../../less/_config.less";
+.login-page {
+  width: 100%;
+  min-height: 90vh;
+  [data-theme="dark"] {
+    background-color: @bg-dark;
+  }
+  [data-theme="light"] {
+    background-color: @bg-light;
+  }
+  .form-container {
+    // .screen("laptop",{width: 80%;height:70%;});
+    height: 70%;
+    border: 1px solid @link-color;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 2px @link-color;
+
+    .screen("desktop",{width: 90%;});
+    .screen("extra",{width: 60%;});
+    .form {
+      width: 50%;
+      padding: 2rem;
+    }
+    .banner {
+      width: 50%;
+      min-height: 50%;
+      background-image: url("https://media.doanhnghiephoinhap.vn/uploads/2022/09/19/nha-thuoc-pharmacity-1663554112.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      background-size: cover;
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+  }
+}
