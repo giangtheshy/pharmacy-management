@@ -1,37 +1,19 @@
-# ts-only
+# Cách cài đặt project
 
-Empty project.
+- Yêu cầu: đã cài Nodejs
 
-## Building and running on localhost
+### Cài `yarn`
 
-First install dependencies:
+- Mở terminal và gõ lệnh : `npm i -g yarn`
 
-```sh
-npm install
-```
+### Tải thư viện cho project
 
-To run in hot module reloading mode:
+- Gõ các lệnh sau vào terminal : `cd pharmacy-management` <Enter> sau đó nhập `yarn` <Enter> 
 
-```sh
-npm start
-```
+### Chạy project client 
 
-To create a production build:
+- Gõ các lệnh sau vào terminal :  `yarn start` <Enter> 
 
-```sh
-npm run build-prod
-```
+# Sau khi pull source code mới:
 
-To create a development build:
-
-```sh
-npm run build-dev
-```
-
-## Running
-
-Open the file `dist/index.html` in your browser
-
-## Credits
-
-Made with [createapp.dev](https://createapp.dev/)
+- Gõ các lệnh sau vào terminal nếu gặp lỗi `NOT FOUND MODULE` : `yarn install --check-file` ( Lệnh này để bổ sung các thư viện vừa được pull về).
