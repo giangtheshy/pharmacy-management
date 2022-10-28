@@ -1,9 +1,115 @@
-import React from 'react'
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Avatar, Button, Col, Drawer, Image, Row } from "antd";
+import type { ColumnsType } from "antd/es/table";
+import qs from "qs";
+import React, { useState, useEffect } from "react";
+import TableCustom, { TableParams } from "../../../components/Custom/Template/TableCustom";
+import DrawerPatientDetail from "../../../components/UserComponent/DrawerPatientDetail";
+import "./User.less";
 
-const Patient = () => {
-  return (
-    <div>Patient</div>
-  )
+interface DataType {
+  name: {
+    first: string;
+    last: string;
+  };
+  gender: string;
+  email: string;
+  login: {
+    uuid: string;
+  };
 }
 
-export default Patient
+const columnsInit: ColumnsType<DataType> = [
+  {
+    title: "Avatar",
+    dataIndex: "picture",
+    render: (picture) => (
+      <Avatar
+        size={"default"}
+        alt="avatar"
+        src={<Image src={picture.medium} preview={false} style={{ width: 32 }} />}
+      />
+    ),
+    width: 50,
+  },
+  {
+    title: "Name",
+    dataIndex: "name",
+    sorter: true,
+    render: (name) => `${name.first} ${name.last}`,
+    width: 100,
+  },
+  {
+    title: "Phone",
+    dataIndex: "phone",
+    width: 100,
+  },
+  {
+    title: "Email",
+    dataIndex: "email",
+    sorter: true,
+    width: 100,
+  },
+  {
+    title: "Action",
+    dataIndex: "action",
+    width: 100,
+    render: (value, record, index) => <></>,
+  },
+];
+
+const getRandomuserParams = (params: TableParams) => ({
+  results: params.pagination?.pageSize,
+  page: params.pagination?.current,
+  field: params.sortField,
+  order: params.sortOrder,
+  gender: params.filters?.gender?.join(","),
+});
+
+const Patient: React.FC = () => {
+  const [data, setData] = useState();
+  const [recordSelected, setRecordSelected] = useState<DataType>();
+
+  const fetchData = async (tableParams: TableParams, callback: (total: number) => void) => {
+    fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`)
+      .then((res) => res.json())
+      .then(({ results }) => {
+        setData(results);
+        callback(200);
+      });
+  };
+  const handleRowSelection = (selectedRows: any, selectedRowKeys?: string) => {
+    console.log(selectedRows, selectedRowKeys);
+  };
+  
+  console.log("customer render");
+  useEffect(() => {
+    columnsInit[columnsInit.length - 1].render = (value, record, index) => (
+      <Row align="middle" justify="space-evenly" gutter={2}>
+        <Col>
+          <Button type="ghost" shape="circle" icon={<EditOutlined />} onClick={() => setRecordSelected(record)} />
+        </Col>
+        <Col>
+          {" "}
+          <Button shape="circle" danger icon={<DeleteOutlined />} />
+        </Col>
+      </Row>
+    );
+  }, []);
+
+  return (
+    <>
+    
+      <TableCustom
+        rowKey="login.uuid"
+        onRowSelection={handleRowSelection}
+        columnsInit={columnsInit}
+        data={data}
+        getData={fetchData}
+      />
+        <DrawerPatientDetail recordSelected={recordSelected} setRecordSelected={setRecordSelected}/>
+    </>
+  );
+};
+
+export default Patient;

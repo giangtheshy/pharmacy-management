@@ -35,6 +35,7 @@ const items: MenuItem[] = [
 
 const LayoutAdmin:FC<PropsWithChildren> = ({children}) => {
   const [collapsed, setCollapsed] = useState(false);
+  const [collapsedWidth, setCollapsedWidth] = useState(10)
   const [tabBar, setTabBar] = useState(location.pathname.replace("/admin",""))
   const navigate = useNavigate(); 
   
@@ -43,8 +44,8 @@ const LayoutAdmin:FC<PropsWithChildren> = ({children}) => {
     navigate(`/admin${e.key}`)
   }
   return (
-    <Layout   style={{ minHeight: "100vh" }}>
-      <Sider className="sidebar-admin" theme={theme} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+    <Layout   style={{ minHeight: "100vh" }} hasSider>
+      <Sider className="sidebar-admin" theme={theme} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} collapsedWidth={collapsedWidth} breakpoint={"md"} onBreakpoint={e=>e?setCollapsedWidth(0):setCollapsedWidth(100)}>
           <Logo onClick={()=>navigate('/')} />
         <Menu theme={theme} defaultSelectedKeys={[tabBar]} selectedKeys={[tabBar]} defaultOpenKeys={[`/${tabBar.split('/')[1]}`]}  mode="inline" items={items}  onClick={(e)=>handleOnClickItem(e)}/>
       </Sider>

@@ -1,3 +1,4 @@
+import { DashboardOutlined, LoginOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Menu, Switch } from "antd";
 import { Header } from "antd/lib/layout/layout";
 import React, { useEffect, useState } from "react";
@@ -26,12 +27,12 @@ const menuItems = [
   },
   {
     key: "/admin",
-    icon: <></>,
+    icon: <DashboardOutlined />,
     label: "Admin",
   },
   {
     key: "/login",
-    icon: <></>,
+    icon: <LoginOutlined />,
     label: "Login",
   },
 ];
@@ -51,12 +52,12 @@ const HeaderCustomAdmin = () => {
             ? {
                 label: username,
                 key: "/login",
-                children: [{ label: "Logout", key: "logout" }],
+                children: [{ label: "Logout", key: "logout" ,icon:<LogoutOutlined />}],
               }
             : {
                 label: "Login",
                 key: "/login",
-                icon: <></>,
+                icon: <LoginOutlined />,
               }
           : item,
       ),

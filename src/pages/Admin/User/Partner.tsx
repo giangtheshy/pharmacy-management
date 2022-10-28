@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 
-const Partner = () => {
+interface PropsPartner<T>{
+  ele?:T
+}
+const Partner= <T extends object>(props:PropsPartner<T>) => {
   return (
     <div>Partner</div>
   )
