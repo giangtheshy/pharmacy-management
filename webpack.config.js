@@ -21,7 +21,10 @@ const config = {
     publicPath: "/",
   },
   devServer: {
-    static: "./dist",
+    static: {
+      directory: path.join(__dirname, './dist'),
+      serveIndex: true,
+    },
     open: true,
     hot: true,
     host: "localhost",

@@ -11,7 +11,7 @@
     "clean": "rm -rf dist/",
     "build-dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "start": "webpack serve --hot --mode development"
+    "start": "webpack serve  --hot --mode development"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",

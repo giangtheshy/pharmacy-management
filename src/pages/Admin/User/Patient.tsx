@@ -1,8 +1,8 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Avatar, Button, Col, Drawer, Image, Row } from "antd";
+import { Avatar, Button, Col, Drawer, Image, Row, Spin } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import qs from "qs";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import TableCustom, { TableParams } from "../../../components/Custom/Template/TableCustom";
 import DrawerPatientDetail from "../../../components/UserComponent/DrawerPatientDetail";
 import "./User.less";
@@ -54,6 +54,7 @@ const columnsInit: ColumnsType<DataType> = [
     title: "Action",
     dataIndex: "action",
     width: 100,
+    fixed:'right',
     render: (value, record, index) => <></>,
   },
 ];
@@ -66,9 +67,12 @@ const getRandomuserParams = (params: TableParams) => ({
   gender: params.filters?.gender?.join(","),
 });
 
+let recordSelected:any = undefined;
 const Patient: React.FC = () => {
   const [data, setData] = useState();
-  const [recordSelected, setRecordSelected] = useState<DataType>();
+  const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+
+  const DrawerPatientDetailLazy = React.lazy(()=>import( "../../../components/UserComponent/DrawerPatientDetail"));
 
   const fetchData = async (tableParams: TableParams, callback: (total: number) => void) => {
     fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`)
@@ -87,7 +91,7 @@ const Patient: React.FC = () => {
     columnsInit[columnsInit.length - 1].render = (value, record, index) => (
       <Row align="middle" justify="space-evenly" gutter={2}>
         <Col>
-          <Button type="ghost" shape="circle" icon={<EditOutlined />} onClick={() => setRecordSelected(record)} />
+          <Button type="ghost" shape="circle" icon={<EditOutlined />} onClick={() => {recordSelected=record;setIsOpenDrawer(true)}} />
         </Col>
         <Col>
           {" "}
@@ -106,8 +110,11 @@ const Patient: React.FC = () => {
         columnsInit={columnsInit}
         data={data}
         getData={fetchData}
-      />
-        <DrawerPatientDetail recordSelected={recordSelected} setRecordSelected={setRecordSelected}/>
+      />{isOpenDrawer&&
+       <Suspense fallback={<p>Loading</p>}>
+       <DrawerPatientDetailLazy recordSelected={recordSelected} isOpen={isOpenDrawer} setIsOpen={setIsOpenDrawer}/>
+       </Suspense>
+      }
     </>
   );
 };
