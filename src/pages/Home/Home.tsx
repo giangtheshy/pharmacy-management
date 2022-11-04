@@ -6,10 +6,10 @@ const Home = () => {
   return (
     <div>
       <Typography.Title level={1} type="success">
-        Home
+        Home wer wer
       </Typography.Title>
       <Link to="/products" type="success">
-        products page
+        products page werwe
       </Link>
     </div>
   );

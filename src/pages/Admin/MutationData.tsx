@@ -3,9 +3,8 @@ import { Button, Col } from "antd";
 import type { ColumnType } from "antd/es/table";
 import qs from "qs";
 import React, { useState } from "react";
-import TableCustom, { TableParams } from "../../../components/Custom/Template/TableCustom";
-import { ColumnsType } from "../../../types/common";
-import "./User.less";
+import TableCustom, { TableParams } from "../../components/Custom/Template/TableCustom";
+import { ColumnsType } from "../../types/common";
 
 interface DataType {
   name: {
@@ -64,7 +63,7 @@ const getRandomuserParams = (params: TableParams) => ({
   gender:params.filters?.gender?.join(","),
 });
 
-const Customer: React.FC = () => {
+const MutationData: React.FC = () => {
   const [data, setData] = useState();
 
 
@@ -91,4 +90,4 @@ const Customer: React.FC = () => {
   );
 };
 
-export default Customer;
+export default MutationData;

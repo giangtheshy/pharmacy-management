@@ -4,14 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { get } from "./apis";
 import CheckLogin from "./components/Custom/CheckLogin";
+import ModelAddCol from "./components/Custom/Template/ModelAddCol";
 import LayoutAdmin from "./components/Layout/LayoutAdmin";
 import LayoutCommon from "./components/Layout/LayoutCommon";
 import routerAdmin from "./components/Routes/Admin";
 import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
+import Login from "./pages/Auth/Login";
 import Posts from "./pages/Posts/Posts";
 import { getUser, setLogin, setToken } from "./store/actions/user.action";
 import { RootState } from "./store/reducers";
+import routerAuth from "./components/Routes/Auth";
 
 const App = () => {
   const user = useSelector((state: RootState) => state.user.user);
@@ -56,14 +58,9 @@ const App = () => {
             }
           />
           <Route path="/posts" element={<LayoutCommon><Posts /></LayoutCommon>} />
-          <Route
-            path="/login"
-            element={
-              <LayoutCommon>
-                <Login />
-              </LayoutCommon>
-            }
-          />
+          {routerAuth.map((item) => (
+            <Route key={item.path} path={item.path} element={item.element} />
+          ))}
           {routerAdmin.map((item) => (
             <Route key={item.path} path={item.path} element={item.element} />
           ))}

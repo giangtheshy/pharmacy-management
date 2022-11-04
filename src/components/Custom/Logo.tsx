@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Custom.less";
 
+import logo from '../../images/logo.png';
+
 interface Props {
   onClick: (value: string) => void;
 }
@@ -14,7 +16,7 @@ const Logo: React.FC<Props> = ({ onClick }) => {
   return (
     <div className="logo">
       <img
-        src="https://res.cloudinary.com/giangtheshy/image/upload/v1618495157/dev/khumuivietnam/nklkpnk9ydwx0p5ppiuk.png"
+        src={logo}
         alt="logo"
         onClick={handleClick}
       />

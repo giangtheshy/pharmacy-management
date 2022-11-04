@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "../store/store";
+import notify from "../utils/func/notify";
 
 export const ENTRY_POINT = process.env.NODE_ENV === "production" ? "http://localhost:5000" : "http://localhost:5000";
 const axiosInstance = axios.create({
@@ -25,7 +26,7 @@ axiosInstance.interceptors.response.use(
       });
     }
     if (error.response.status === 403) {
-      alert("Phiên đăng nhập đã hết hạn! Trang web sẽ tự động refresh để tiếp tục...");
+      notify("warning","Thông báo đăng nhập","Phiên đăng nhập đã hết hạn! Trang web sẽ tự động refresh để tiếp tục...");
       // window.location.reload();
       return new Promise((resolve, reject) => {
         reject(error);

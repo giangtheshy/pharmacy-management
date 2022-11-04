@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren, useState } from "react";
-import "./LayoutAdmin.less";
+import "./Layout.less";
 
 import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
@@ -34,9 +34,9 @@ const LayoutAdmin:FC<PropsWithChildren> = ({children}) => {
       
       <Layout className="site-layout">
         <HeaderCustomAdmin/>
-        <Content style={{ margin: "0 5px" }}>
+        <Content>
           
-          <div className="site-layout-background" style={{padding:16,  minHeight: "100%" }}>
+          <div className="site-layout-background" style={{  minHeight: "100%" }}>
            {children}
           </div>
         </Content>
