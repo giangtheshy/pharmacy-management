@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../store/store";
 import notify from "../utils/func/notify";
 
-export const ENTRY_POINT = process.env.NODE_ENV === "production" ? "http://localhost:5000" : "http://localhost:5000";
+export const ENTRY_POINT = process.env.NODE_ENV === "production" ? "http://35.78.118.207:5000" : "http://localhost:5000";
 const axiosInstance = axios.create({
   baseURL: `${ENTRY_POINT}/api/v1`,
 });
