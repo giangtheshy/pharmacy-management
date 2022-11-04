@@ -10,7 +10,7 @@ export function* getUser() {
   try {
     const user: UserType = yield select((state: RootState) => state.user.user);
     const socketId = 666;
-    const { data } = yield call(get, `/user/info/${socketId}`);
+    const { data } = yield call(get, `/user/info`);
 
     yield put(setUser({ username: data.user.username }));
   } catch (error) {

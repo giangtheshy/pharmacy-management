@@ -2,6 +2,7 @@ import React from "react";
 import Dashboard from "../../pages/Admin/Dashboard";
 import Doctor from "../../pages/Admin/Employee/Doctor";
 import Nurse from "../../pages/Admin/Employee/Nurse";
+import MutationData from "../../pages/Admin/MutationData";
 import Overview from "../../pages/Admin/Overview";
 import Customer from "../../pages/Admin/User/Customer";
 import Partner from "../../pages/Admin/User/Partner";
@@ -30,6 +31,14 @@ const routerAdmin = [
     element: (
       <LayoutAdmin>
         <Dashboard />
+      </LayoutAdmin>
+    ),
+  },
+  {
+    path: "/admin/mutation",
+    element: (
+      <LayoutAdmin>
+        <MutationData />
       </LayoutAdmin>
     ),
   },

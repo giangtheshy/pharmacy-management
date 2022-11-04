@@ -1,0 +1,91 @@
+// .site-layout .site-layout-background {
+//   background: rgb(255, 193, 193);
+// }
+@import "../../less/_config.less";
+.auth-page {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("../../images/ambulance.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 3rem 0;
+  .screen("desktop",{ height: 130vh;min-height: unset});
+  [data-theme="dark"] {
+    background-color: @bg-dark;
+  }
+  [data-theme="light"] {
+    background-color: @bg-light;
+  }
+  .form-container {
+    border-radius: 0.5rem;
+    min-height: 80vh;
+    .screen("desktop",{width: 90%});
+    .screen("extra",{width: 60%;});
+    .form {
+      width: 50%;
+      // height: 100%;
+      padding: 3rem;
+      .ant-input{
+        border-radius: .3rem;
+      }
+      .ant-input-affix-wrapper{
+        border-radius: .3rem;
+      }
+      .ant-form-item{
+        margin-bottom: 10px;
+      }
+      .ant-form-item-explain-error{
+        line-height: 0 !important;
+      }
+    }
+    .banner {
+      position: relative;
+      width: 50%;
+      min-height: 50%;
+      display: grid;
+      place-items: center;
+      border-radius:  0.5rem 0  0 0.5rem ;
+      background-image: linear-gradient(#69d7c4 0%, #36a693 100%);
+      color: linear-gradient(#69d7c4 100%, #36a693 100%);
+      overflow: hidden;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -5rem;
+        right: -5rem;
+        width: 16rem;
+        height: 16rem;
+        border-radius: 50%;
+        background-image: linear-gradient(#ffffff 0%, rgba(255, 255, 255, 0) 100%);
+        opacity: 0.1;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        top: -5rem;
+        left: -5rem;
+        width: 16rem;
+        height: 16rem;
+        border-radius: 50%;
+        background-image: linear-gradient(rgba(255, 255, 255, 0) 0%,#fff 100%);
+        opacity: 0.1;
+      }
+      .logo-image {
+        width: 12rem;
+        height: 12rem;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.sidebar-admin {
+  .ant-menu-item {
+    margin-top: 0px !important;
+  }
+}
+.ant-layout-sider-zero-width-trigger {
+  top: 14px !important;
+}

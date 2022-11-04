@@ -7,3 +7,4 @@ export const SET_TOKEN = "SET_TOKEN";
 export const SET_LOGIN = "SET_LOGIN";
 
 export const SET_THEME = "SET_THEME";
+export const SET_ACCOUNT = "SET_ACCOUNT";

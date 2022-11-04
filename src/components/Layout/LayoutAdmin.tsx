@@ -1,7 +1,7 @@
 import React, { FC, PropsWithChildren, useState } from "react";
-import "./LayoutAdmin.less";
+import "./Layout.less";
 
-import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { DatabaseOutlined, DesktopOutlined, EditOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu } from "antd";
 import theme from "../../config/theme";
@@ -28,6 +28,7 @@ function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode,
 const items: MenuItem[] = [
   getItem("Thống kê", "/analytics", <PieChartOutlined />),
   getItem("Liệt kê", "/view", <DesktopOutlined />),
+  getItem("Dữ liệu", "/mutation",<DatabaseOutlined />),
   getItem("Người dùng", "/user", <UserOutlined />, [getItem("Bệnh nhân", "/user/patient"), getItem("Đối tác", "/user/partner"), getItem("Khách hàng", "/user/customer")]),
   getItem("Nhân viên", "/employee", <TeamOutlined />, [getItem("Bác sĩ", "/employee/doctor"), getItem("Y tá", "/employee/nurse")]),
   getItem("Tài liệu", "/document", <FileOutlined />),

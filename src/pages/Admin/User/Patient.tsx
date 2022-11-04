@@ -1,10 +1,10 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Avatar, Button, Col, Drawer, Image, Row, Spin } from "antd";
-import type { ColumnsType } from "antd/es/table";
+import { Avatar, Button, Col, Image, Row } from "antd";
+import { ColumnType } from "antd/lib/table";
 import qs from "qs";
-import React, { useState, useEffect, Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import TableCustom, { TableParams } from "../../../components/Custom/Template/TableCustom";
-import DrawerPatientDetail from "../../../components/UserComponent/DrawerPatientDetail";
+import { ColumnsType } from "../../../types/common";
 import "./User.less";
 
 interface DataType {
@@ -19,7 +19,7 @@ interface DataType {
   };
 }
 
-const columnsInit: ColumnsType<DataType> = [
+const columnsInit:ColumnsType<DataType>= [
   {
     title: "Avatar",
     dataIndex: "picture",
@@ -31,6 +31,7 @@ const columnsInit: ColumnsType<DataType> = [
       />
     ),
     width: 50,
+    editable:true,
   },
   {
     title: "Name",
@@ -38,17 +39,20 @@ const columnsInit: ColumnsType<DataType> = [
     sorter: true,
     render: (name) => `${name.first} ${name.last}`,
     width: 100,
+    editable:true,
   },
   {
     title: "Phone",
     dataIndex: "phone",
     width: 100,
+    editable:true,
   },
   {
     title: "Email",
     dataIndex: "email",
     sorter: true,
     width: 100,
+    editable:true,
   },
   {
     title: "Action",
@@ -110,9 +114,10 @@ const Patient: React.FC = () => {
         columnsInit={columnsInit}
         data={data}
         getData={fetchData}
+
       />{isOpenDrawer&&
        <Suspense fallback={<p>Loading</p>}>
-       <DrawerPatientDetailLazy recordSelected={recordSelected} isOpen={isOpenDrawer} setIsOpen={setIsOpenDrawer}/>
+       <DrawerPatientDetailLazy recordSelected={recordSelected} isOpen={isOpenDrawer} setIsOpen={setIsOpenDrawer} />
        </Suspense>
       }
     </>
